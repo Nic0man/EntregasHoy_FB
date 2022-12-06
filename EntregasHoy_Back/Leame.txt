@@ -1,0 +1,6 @@
+para iniciar el servidor
+- npm init -y
+- npm install express morgan nodemon cors
+- agregar el script del start
+	"start":"node app.js"
+- npm start

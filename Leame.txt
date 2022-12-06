@@ -1,0 +1,15 @@
+para instalar react en el proyecto
+
+abra el cmd desde la carpeta que alojará el proyecto de React y ejecute los siguientes comandos
+- npm create vite@latest
+- cd <nombre del proyecto>
+- npm install
+- npm i react-router-dom
+
+Para iniciar git
+- git init
+- git add README.md
+- git commit -m "first commit"
+- git branch -M master
+- git remote add origin <enlace del repositorio>
+- git push -u origin main
