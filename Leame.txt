@@ -13,3 +13,11 @@ Para iniciar git
 - git branch -M master
 - git remote add origin <enlace del repositorio>
 - git push -u origin main
+
+Para crear una nueva rama
+- git checkout -b root1         "crea una nueva rama root1"
+- git add .                     "hace un commit de todos los archivos"
+- git branch                    "revisar cuales son las ramas existentes y en cual se encuentra"
+- git commit -m "<msn>"         "hacer un commit de los archivos"
+- git push origin root1         "crea un push en la rama root1"
+- git status                    "muestra el status de la rama"
