@@ -1,0 +1,9 @@
+// Usuario 1 - base Mongo: Cluster0
+username: EntregasHoy_db
+contraseña: test123
+
+// Usuario 2 - base Mongo: Cluster0
+username: AdminEnvios
+Contraseña: EntregasHoyDB
+
+https://github.com/sharybustos/my-library
