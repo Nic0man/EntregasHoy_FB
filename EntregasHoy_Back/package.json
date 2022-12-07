@@ -1,7 +1,6 @@
 {
   "name": "entregashoy_back",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +15,10 @@
     "express": "^4.18.2",
     "mongodb": "^4.12.1",
     "mongoose": "^6.8.0",
-    "morgan": "^1.10.0",
+    "morgan": "^1.10.0"
+  },
+  "description": "",
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }

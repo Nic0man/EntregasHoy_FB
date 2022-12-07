@@ -1,39 +1,51 @@
-import express from 'express'
-import compression from 'compression'
-import { json, urlenconded } from 'body-parser'
-import { connectToMongoDB } from './db/client'
-import { setUpControllers } from './controllers'
-
 const express = require('express')
-const morgan = require('morgan')
+const mongoose = require('mongoose')
 const cors = require('cors')
+const bodyParser = require('body-parser')
+require("dotenv").config();
 
-const main = async () => {
-    try{
-        const app = express()
-        await connectToMongoDB()
-        //------- configuracion --------------
-        app.set('port', 3000)
-        app.set('json spaces', 2) //formateo con dos tabulaciones
-        app.use(compression())
-        app.use(urlenconded({ extend: false}))
-        app.use(json())
-        app.use(cors())
-        app.use(morgan('dev'))
-        app.use(express.json())
-        app.use(express.urlencoded({
-            extended: true
-        }));
-        // --------- Rutas ---------------
-        app.use('/user', require('./routes/user'))
+const userRoutes = require("./routes/users")
+const envioRoutes = require("./routes/envios")
 
-        //-------- Inicialización del servidor -------
-        app.listen(3000, ()=>{console.log('servidor iniciado en el puerto 3000')})
-    }catch (error){
-        console.error(error)
-    }
-}
+mongoose
+    .connect(process.env.STR_CONNECTION)
+    .then((x)=>{
+        console.log(`Connected to mongo, Database Name: "${x.connections[0].name}"`)
+    })
+    .catch((err)=>{
+        console.error('Error connectig to mongo', err.reason)
+    })
 
-main()
+
+const app = express()
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended:true
+}))
+
+app.use(cors())
+
+// --------- Rutas ---------------
+app.use('/envio', envioRoutes)
+app.use('/users', userRoutes)
+
+// --------- Config Puerto ------------
+const port = process.env.PORT||9000
+
+//-------- Inicialización del servidor -------
+app.listen(port, ()=>{
+    console.log('servidor iniciado en el puerto',port)
+})
+
+//404 Error
+app.use((req, res, next)=>{
+    next(createError(404))
+})
+
+app.use(function(err,req,res,next){
+    console.error(err.message)
+    if (!err.statusCode) err.statusCode = 500
+    res.status(err.statusCode).send(err.message)
+})
 
   
