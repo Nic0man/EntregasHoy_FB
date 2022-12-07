@@ -16,8 +16,8 @@ export const Dimensiones = ({HandleDimensiones}) => {
         setBox(newbox)
     }
 
-    const HandleSubmit =()=>{
-        HandleDimensiones(box)
+    const HandleSubmit =(pos)=>{
+        HandleDimensiones(box,pos)
     }
 
     return (
@@ -31,7 +31,7 @@ export const Dimensiones = ({HandleDimensiones}) => {
                             placeholder=""
                             value={box.Peso}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "Peso")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("Peso")}
                             required />
                         <label htmlFor="fullname">Peso (Kg)</label>
                     </div>
@@ -47,7 +47,7 @@ export const Dimensiones = ({HandleDimensiones}) => {
                             placeholder=""
                             value={box.Largo}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "Largo")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("Largo")}
                             required />
                         <label htmlFor="Usuario">Largo (cm)</label>
                     </div>
@@ -60,7 +60,7 @@ export const Dimensiones = ({HandleDimensiones}) => {
                             placeholder=""
                             value={box.Ancho}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "Ancho")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("Ancho")}
                             required />
                         <label htmlFor="Usuario">Ancho (cm)</label>
                     </div>
@@ -73,7 +73,7 @@ export const Dimensiones = ({HandleDimensiones}) => {
                             placeholder=""
                             value={box.Alto}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "Alto")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("Alto")}
                             required />
                         <label htmlFor="Usuario">Alto (cm)</label>
                     </div>

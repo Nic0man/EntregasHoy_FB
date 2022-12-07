@@ -4,33 +4,37 @@ import { Dimensiones } from "./Dimensiones"
 import { Remitente } from "./Remitente"
 import { Resumen } from "./Resumen"
 
-const ResumenInicial = {Remitente:'', Destinatario:'', Dimension: ''}
+//-----------------------------------Información para imprimir en el resumen--------------------------------------------------------------------
+const ResumenInicial = { Remitente:{Ciudad:'', CodPos:''}, 
+                         Destinatario:{Nombre:'', Direccion:'', No:'', CodPos:'', Fecha:''},
+                         Dimensiones: {Peso:'', Largo:'', Ancho:'', Alto:''} }
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------
 const Envio = () => {
     const [lista, setLista] = useState(ResumenInicial)
 
-    const HandleRemitente = (sentTo) => {
+    const HandleRemitente = (sentTo,pos) => {
         //console.log(`Ciudad: ${sentTo.Ciudad}\n` + `Codigo Postal: ${sentTo.CodPos}`)
         const newLista = {...lista}
-        newLista.Remitente = `${sentTo.Ciudad}, ${sentTo.CodPos}`
+        newLista.Remitente[pos] = sentTo[pos]
         setLista(newLista)
-        //console.log(newLista.Remitente)
+        console.log(newLista.Remitente)
     }
 
-    const HandleDestinatario = (From) => {
+    const HandleDestinatario = (From,pos) => {
         //console.log(`Nombre: ${From.Nombre}\n` + `Identificacion: ${From.No}\n` + `Direccion: ${From.No}\n` + `Direccion: ${From.CodPos}\n`)
         const newLista = {...lista}
-        newLista.Destinatario = `${From.Nombre}, ${From.No}, ${From.Address},${From.CodPos}`
+        newLista.Destinatario[pos] = From[pos]
         setLista(newLista)
-        //console.log(newLista.Destinatario) 
+        console.log(newLista.Destinatario) 
     }
 
-    const HandleDimensiones = (box) => {
+    const HandleDimensiones = (box,pos) => {
         //console.log(`Nombre: ${From.Nombre}\n` + `Identificacion: ${From.No}\n` + `Direccion: ${From.No}\n` + `Direccion: ${From.CodPos}\n`)
         const newLista = {...lista}
-        newLista.Dimension = `${box.Peso} Kg, Medidas: ${box.Largo}x${box.Ancho}x${box.Alto}cm`
+        newLista.Dimensiones[pos] = box[pos]
         setLista(newLista)
-        //console.log(newLista.Dimension) 
+        console.log(newLista.Dimensiones) 
     }
 
     return (

@@ -1,11 +1,32 @@
-
+import { endpointSending } from '../constants/constants';
 
 export const Resumen = ({ lista = [] }) => {
 
-    const HandleSubmitIn = (e) =>{
+//------------------ Ingreso de envios a la base de datos -----------------------------------
+    const HandleSubmitIn = async(e) =>{
         e.preventDefault()
-        console.log(lista)
+        //console.log(JSON.stringify(lista))
+        try{
+            const response =await fetch(endpointSending,{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(lista),
+            })
+            const data = await response.json()
+            console.log(data)
+            alert('Ingreso exitoso!')
+        }catch(error){
+            alert('Ha sucedido un error al cargar los datos')
+        }
     }
+
+// ---------------------------------------------------------------------------------------------
+
+    const msgRemitente = `${lista.Remitente.Ciudad}, ${lista.Remitente.CodPos} `
+    const msgDestinatario = `${lista.Destinatario.Nombre}, ${lista.Destinatario.No}, ${lista.Destinatario.Direccion}, ${lista.Destinatario.CodPos}`
+    const msgDimensiones = `${lista.Dimensiones.Peso}Kg => (${lista.Dimensiones.Largo}x${lista.Dimensiones.Ancho}x${lista.Dimensiones.Alto})`
 
     return (
         <div>
@@ -13,9 +34,9 @@ export const Resumen = ({ lista = [] }) => {
                 <div className='col-xl-8 col-md-8 col-lg-8'>
                     <div className='card mb-4 resumen'>
                         <div className="card-body">
-                            <span><strong>Remitente: </strong>{lista.Remitente}</span><br />
-                            <span><strong>Destinatario: </strong>{lista.Destinatario}</span><br />
-                            <span><strong>Dimensiones: </strong>{lista.Dimension}</span>
+                            <span><strong>Remitente: </strong>{msgRemitente}</span><br />
+                            <span><strong>Destinatario: </strong>{msgDestinatario}</span><br />
+                            <span><strong>Dimensiones: </strong>{msgDimensiones}</span>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ export const Destinatario = ({HandleDestinatario}) => {
     const[From,setFrom] = useState({
         Nombre:"",
         No:"",
-        Address:"",
+        Direccion:"",
         CodPos:"",
     })
 
@@ -15,8 +15,8 @@ export const Destinatario = ({HandleDestinatario}) => {
         setFrom(newdata)
     }
 
-    const HandleSubmit = () =>{
-        HandleDestinatario(From)
+    const HandleSubmit = (pos) =>{
+        HandleDestinatario(From,pos)    //cuando se hace el submit, envia los datos de los campos al metodo del padre HandleDestinatario
     }
 
     return (
@@ -30,7 +30,7 @@ export const Destinatario = ({HandleDestinatario}) => {
                             placeholder=""
                             value={From.Nombre}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "Nombre")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("Nombre")}
                             required />
                         <label htmlFor="Nombre">Nombre Destinatario</label>
                     </div>
@@ -42,7 +42,7 @@ export const Destinatario = ({HandleDestinatario}) => {
                             name="No"
                             value={From.No}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "No")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("No")}
                             placeholder=""
                             required />
                         <label htmlFor="No">N. identificación</label>
@@ -57,8 +57,8 @@ export const Destinatario = ({HandleDestinatario}) => {
                             name="Address"
                             placeholder=""
                             value={From.Address}
-                            onChange={(ev) => {HandleOnChange(ev.target.value, "Address")}}
-                            onBlur={HandleSubmit}
+                            onChange={(ev) => {HandleOnChange(ev.target.value, "Direccion")}}
+                            onBlur={()=>HandleSubmit("Direccion")}
                             required />
                         <label htmlFor="Address">Dirección Destinatario</label>
                     </div>
@@ -71,7 +71,7 @@ export const Destinatario = ({HandleDestinatario}) => {
                             placeholder=""
                             value={From.CodPos}
                             onChange={(ev) => {HandleOnChange(ev.target.value, "CodPos")}}
-                            onBlur={HandleSubmit}
+                            onBlur={()=>HandleSubmit("CodPos")}
                             required />
                         <label htmlFor="CodPos">Código Postal</label>
                     </div>

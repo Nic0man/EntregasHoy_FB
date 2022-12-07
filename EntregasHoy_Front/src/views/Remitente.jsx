@@ -13,8 +13,8 @@ export const Remitente = ({HandleRemitente}) => {
         setsentTo(newdata)
     }
 
-    const HandleSubmit = () =>{
-        HandleRemitente(sentTo)
+    const HandleSubmit = (pos) =>{
+        HandleRemitente(sentTo,pos)
     }
 
     return (
@@ -27,7 +27,7 @@ export const Remitente = ({HandleRemitente}) => {
                         placeholder=""
                         value={sentTo.Ciudad}
                         onChange={(e) => {HandleOnChange(e.target.value, "Ciudad")}}
-                        onBlur={HandleSubmit}
+                        onBlur={()=>HandleSubmit("Ciudad")}
                         required />
                     <label htmlFor="Ciudad">Ciudad Remitente</label>
                 </div>
@@ -40,7 +40,7 @@ export const Remitente = ({HandleRemitente}) => {
                         placeholder=""
                         value={sentTo.CodPos}
                         onChange={(e) => HandleOnChange(e.target.value,"CodPos")}
-                        onBlur={HandleSubmit}
+                        onBlur={()=>HandleSubmit("CodPos")}
                         required />
                     <label htmlFor="CodPos">Codigo Postal</label>
                 </div>
