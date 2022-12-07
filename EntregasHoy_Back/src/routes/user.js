@@ -9,4 +9,10 @@ router.post('/login', (req,res)=>{
     })
 })
 
+router.get('/',(req,res)=>{
+    res.json({
+        message:'ok'
+    })
+})
+
 module.exports=router
